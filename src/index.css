@@ -1,0 +1,288 @@
+/* =========================
+   APP BRANDING
+   ========================= */
+
+.app-title {
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  margin: 0;
+}
+
+.app-tagline {
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--muted);
+  margin-top: 0.15rem;
+}
+
+/* =========================
+ THEME VARIABLES
+ ========================= */
+:root {
+  --bg: #f4f7fb;
+  --card: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --primary: #1976d2;
+  --success: #4caf50;
+  --warning: #ff9800;
+  --danger: #f44336;
+  --border: #e5e7eb;
+}
+
+/* DARK MODE */
+[data-theme="dark"] {
+  --bg: #0f172a;
+  --card: #1e293b;
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+  --border: #334155;
+}
+
+/* =========================
+ BASE LAYOUT
+ ========================= */
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.container {
+  max-width: 640px;
+  margin: auto;
+  padding: 1rem;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+/* =========================
+ DARK MODE TOGGLE
+ ========================= */
+.toggle {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+/* =========================
+ MEDICATION CARD
+ ========================= */
+.card {
+  background: var(--card);
+  border-radius: 14px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+  border-left: 6px solid var(--border);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+}
+
+.card.OK {
+  border-left-color: var(--success);
+}
+
+.card.DUE_SOON {
+  border-left-color: var(--warning);
+}
+
+.card.OVERDUE {
+  border-left-color: var(--danger);
+}
+
+.card.PRN {
+  border-left-color: var(--muted);
+}
+
+/* ✅ NEW: Not Started (scheduled but no nextDose yet) */
+.card.NS {
+  border-left-color: var(--primary);
+}
+
+.card h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.card small {
+  color: var(--muted);
+}
+
+/* =========================
+ NEXT DOSE HIGHLIGHT
+ ========================= */
+.next-dose {
+  margin-top: 0.5rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  font-weight: 600;
+  background: rgba(0, 0, 0, 0.05);
+  display: inline-block;
+}
+
+/* =========================
+ BUTTONS
+ ========================= */
+button {
+  margin-top: 0.75rem;
+  padding: 0.6rem;
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  background: var(--primary);
+  color: white;
+  cursor: pointer;
+}
+
+button:disabled {
+  background: var(--border);
+  color: var(--muted);
+  cursor: not-allowed;
+}
+
+/* EXPAND / COLLAPSE */
+.expand {
+  background: none;
+  border: none;
+  color: var(--primary);
+  margin-top: 0.5rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+/* =========================
+ ACETAMINOPHEN BAR
+ ========================= */
+.apap-bar {
+  position: sticky;
+  top: 0;
+  background: var(--card);
+  padding: 0.75rem;
+  border-radius: 14px;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  z-index: 10;
+}
+
+.apap-meter {
+  height: 10px;
+  border-radius: 6px;
+  background: var(--border);
+  overflow: hidden;
+  margin-bottom: 0.4rem;
+}
+
+.apap-fill {
+  height: 100%;
+  border-radius: 6px;
+}
+
+/* =========================
+ WARNINGS
+ ========================= */
+.warning {
+  color: var(--danger);
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+}
+
+/* =========================
+ ADHERENCE HEATMAP
+ ========================= */
+.heatmap {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  margin-top: 0.75rem;
+}
+
+.heat-cell {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 6px;
+  background: var(--border);
+}
+
+.heat-good {
+  background: #4caf50;
+}
+
+.heat-mixed {
+  background: #ffb300;
+}
+
+.heat-bad {
+  background: #f44336;
+}
+
+.heat-none {
+  background: var(--border);
+}
+
+/* =========================
+ UNDO TOAST (SNACKBAR)
+ ========================= */
+.undo-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 0.75rem 0.9rem;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: 640px;
+  width: calc(100% - 24px);
+  z-index: 999;
+}
+
+.undo-toast__msg {
+  flex: 1;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.undo-toast__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.undo-toast__btn {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0.45rem 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.undo-toast__close {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-size: 1rem;
+  cursor: pointer;
+}
